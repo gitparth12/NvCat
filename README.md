@@ -1,4 +1,5 @@
 # init.lua
+_inspired by https://github.com/ThePrimeagen/init.lua with a couple changes_
 
 Requirements:
 * neovim=0.8.3
