@@ -20,3 +20,4 @@ vim.g.copilot_filetypes = {
 
 -- Suggestions window
 vim.cmd([[highlight CopilotSuggestion guifg=#555555 ctermbg=8]])
+
