@@ -68,4 +68,10 @@ return require("packer").startup(function(use)
 	use({ "feline-nvim/feline.nvim" })
 
 	use({ "nvim-tree/nvim-web-devicons" })
+
+	use({ "nvim-treesitter/nvim-treesitter-context" })
+
+	use({ "tpope/vim-commentary" })
+
+	use({ "tpope/vim-surround" })
 end)
