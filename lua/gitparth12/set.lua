@@ -42,3 +42,6 @@ vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {
 vim.opt.termguicolors = true
 
 vim.opt.guifont = "losevkaTerm Nerd Font Mono"
+
+-- clipboard
+vim.opt.clipboard = "unnamed"
