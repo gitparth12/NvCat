@@ -2,10 +2,9 @@
 _Based on [this config](https://github.com/ThePrimeagen/init.lua) by [ThePrimeagen](https://github.com/ThePrimeagen) with my own changes_
 
 Requirements:
-* neovim=0.8.3
-* ripgrep
-* packer.nvim
-    - Go [here](https://github.com/wbthomason/packer.nvim) for installation instructions
+* neovim>=0.8.3
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* [packer.nvim](https://github.com/BurntSushi/ripgrep)
 
 There are two ways of using this config after cloning this repo.
 
