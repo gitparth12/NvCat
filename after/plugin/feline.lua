@@ -1,4 +1,4 @@
-local ctp_feline = require('catppuccin.groups.integrations.feline')
+local ctp_feline = require("catppuccin.groups.integrations.feline")
 
 -- ctp_feline.setup()
 
