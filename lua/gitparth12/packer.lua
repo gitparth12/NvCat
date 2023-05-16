@@ -19,13 +19,14 @@ return require('packer').startup(function(use)
     -- 	end
     -- })
 
-    use({
-        'folke/tokyonight.nvim',
-        as = 'tokyonight',
-        config = function()
-            vim.cmd('colorscheme tokyonight-moon')
-        end
-    })
+    -- use({
+    --     'folke/tokyonight.nvim',
+    --     as = 'tokyonight',
+    --     config = function()
+    --         vim.cmd('colorscheme tokyonight-moon')
+    --     end
+    -- })
+
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
     use('ThePrimeagen/harpoon')
@@ -38,7 +39,7 @@ return require('packer').startup(function(use)
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
             {
-                              -- Optional
+                -- Optional
                 'williamboman/mason.nvim',
                 run = function()
                     pcall(vim.cmd, 'MasonUpdate')
@@ -47,13 +48,26 @@ return require('packer').startup(function(use)
             { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
             -- Autocompletion
-            { 'hrsh7th/nvim-cmp' }, -- Required
+            { 'hrsh7th/nvim-cmp' },     -- Required
             { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' }, -- Required
+            { 'L3MON4D3/LuaSnip' },     -- Required
         }
     }
     use { 'github/copilot.vim' }
 
     use { 'jose-elias-alvarez/null-ls.nvim' }
 
+    use { "catppuccin/nvim", as = "catppuccin" }
+
+    use { 'feline-nvim/feline.nvim' }
+
+    use {
+        'lewis6991/gitsigns.nvim',
+        -- tag = 'release' -- To use the latest release (do not use this if you run Neovim nightly or dev builds!)
+    }
+
+    use { 'nvim-treesitter/nvim-treesitter' }
+    use { 'nvim-treesitter/nvim-treesitter-context' }
+
+    use { 'tpope/vim-commentary' }
 end)
