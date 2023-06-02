@@ -51,9 +51,9 @@ return require("packer").startup(function(use)
             { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
             -- Autocompletion
-            { "hrsh7th/nvim-cmp" },     -- Required
+            { "hrsh7th/nvim-cmp" }, -- Required
             { "hrsh7th/cmp-nvim-lsp" }, -- Required
-            { "L3MON4D3/LuaSnip" },     -- Required
+            { "L3MON4D3/LuaSnip" }, -- Required
         },
     })
     use({ "github/copilot.vim" })
@@ -74,4 +74,13 @@ return require("packer").startup(function(use)
     use({ "tpope/vim-commentary" })
 
     use({ "tpope/vim-surround" })
+
+    use({ "lukas-reineke/indent-blankline.nvim" })
+
+    use({
+        "stevearc/oil.nvim",
+        config = function()
+            require("oil").setup()
+        end,
+    })
 end)
