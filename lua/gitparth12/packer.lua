@@ -74,4 +74,13 @@ return require("packer").startup(function(use)
 	use({ "tpope/vim-commentary" })
 
 	use({ "tpope/vim-surround" })
+
+	use({ "lukas-reineke/indent-blankline.nvim" })
+
+	use({
+		"stevearc/oil.nvim",
+		config = function()
+			require("oil").setup()
+		end,
+	})
 end)

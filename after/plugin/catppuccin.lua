@@ -30,7 +30,14 @@ require("catppuccin").setup({
 		operators = {},
 	},
 	color_overrides = {},
-	custom_highlights = {},
+	custom_highlights = function(colors)
+		return {
+			Comment = { fg = colors.maroon },
+			LineNr = { fg = colors.peach },
+			["@constant.builtin"] = { fg = colors.rosewater, style = {} },
+			["@comment"] = { fg = colors.lavender, style = { "bold" } },
+		}
+	end,
 	integrations = {
 		cmp = true,
 		gitsigns = true,
