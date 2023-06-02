@@ -8,4 +8,4 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = "LightSlateGrey" })
 end
 
--- ColorMyPencils()
+ColorMyPencils()

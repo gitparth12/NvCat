@@ -72,9 +72,9 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", function()
         vim.lsp.buf.rename()
     end, opts)
-    vim.keymap.set("i", "<C-h>", function()
-        vim.lsp.buf.signature_help()
-    end, opts)
+    -- vim.keymap.set("i", "<C-h>", function()
+    --     vim.lsp.buf.signature_help()
+    -- end, opts)
     -- lsp diagnostic cursor hold hover thing, link in set.lua
     vim.api.nvim_create_autocmd("CursorHold", {
         buffer = bufnr,
@@ -92,7 +92,7 @@ lsp.on_attach(function(client, bufnr)
     })
     -- See `:help K` for why this keymap
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+    -- nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 end)
 
 -- (Optional) Configure lua language server for neovim
