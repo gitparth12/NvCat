@@ -38,3 +38,10 @@ vim.o.updatetime = 250
 vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]])
+
+vim.opt.termguicolors = true
+
+vim.opt.guifont = "losevkaTerm Nerd Font Mono"
+
+-- clipboard
+vim.opt.clipboard = "unnamed"
