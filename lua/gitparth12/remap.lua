@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 -- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>pv", require("oil").open, { desc = "Open parent directory" })
+-- vim.keymap.set("n", "<leader>pv", require("oil").open, { desc = "Open parent directory" })
+vim.keymap.set("n", "<leader>pv", "<CMD>lua MiniFiles.open()<CR>", { desc = "Open parent directory" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
