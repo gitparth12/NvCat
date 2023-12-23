@@ -13,7 +13,7 @@ Clone the repository and install the plugins:
 
 ```sh
 git clone git@github.com:gitparth12/init.lua ~/.config/gitparth12/init.lua
-NVIM_APPNAME=gitparth12/init.lua/ nvim --headless +"PackerSync" +qa
+NVIM_APPNAME=gitparth12/init.lua/ nvim --headless +"Lazy! sync" +qa
 ```
 
 Open Neovim with this config:
@@ -26,18 +26,14 @@ NVIM_APPNAME=gitparth12/init.lua/ nvim
 
 ### colorscheme
 
-+ [folke/tokyonight.nvim](https://dotfyle.com/plugins/folke/tokyonight.nvim)
 + [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
-+ [rose-pine/neovim](https://dotfyle.com/plugins/rose-pine/neovim)
-### completion
+### comment
 
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
-### editing-support
-
-+ [nvim-treesitter/nvim-treesitter-context](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-context)
++ [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
 ### file-explorer
 
 + [stevearc/oil.nvim](https://dotfyle.com/plugins/stevearc/oil.nvim)
++ [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
 ### fuzzy-finder
 
 + [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
@@ -47,38 +43,41 @@ NVIM_APPNAME=gitparth12/init.lua/ nvim
 ### indent
 
 + [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
+### keybinding
+
++ [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
 ### lsp
 
-+ [jose-elias-alvarez/null-ls.nvim](https://dotfyle.com/plugins/jose-elias-alvarez/null-ls.nvim)
 + [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [VonHeikemen/lsp-zero.nvim](https://dotfyle.com/plugins/VonHeikemen/lsp-zero.nvim)
 ### lsp-installer
 
 + [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
-### marks
-
-+ [ThePrimeagen/harpoon](https://dotfyle.com/plugins/ThePrimeagen/harpoon)
 ### nvim-dev
 
++ [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
 + [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
 ### plugin-manager
 
-+ [wbthomason/packer.nvim](https://dotfyle.com/plugins/wbthomason/packer.nvim)
-### snippet
-
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
++ [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
 ### statusline
 
 + [feline-nvim/feline.nvim](https://dotfyle.com/plugins/feline-nvim/feline.nvim)
++ [nvim-lualine/lualine.nvim](https://dotfyle.com/plugins/nvim-lualine/lualine.nvim)
 ### syntax
 
++ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
++ [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+### utility
+
++ [3rd/image.nvim](https://dotfyle.com/plugins/3rd/image.nvim)
 ## Language Servers
 
 + clangd
-+ jdtls
++ cmake
++ cssls
++ html
 + lua_ls
-+ pyright
 + tsserver
 
 
