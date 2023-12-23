@@ -6,6 +6,16 @@ local opts = {
     termguicolors = true,
     number = true,
     relativenumber = true,
+    swapfile = false,
+    backup = false,
+    undodir = os.getenv("HOME") .. "/.vim.undodir",
+    undofile = true,
+    incsearch = true,
+    hlsearch = true,
+    scrolloff = 8,
+    signcolumn = "yes",
+    colorcolumn = 80,
+    updatetime = 250,
 }
 
 -- Set options from table
