@@ -19,7 +19,10 @@ return {
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup({})
             lspconfig.tsserver.setup({})
-            lspconfig.clangd.setup({})
+            lspconfig.clangd.setup({
+                -- cmd = {"/usr/bin/clangd", "--tab-width=4"},
+                -- root_dir = lspconfig.util.root_pattern('.git');
+            })
             lspconfig.cmake.setup({})
             lspconfig.cssls.setup({})
             lspconfig.html.setup({})
