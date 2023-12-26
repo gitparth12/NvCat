@@ -39,6 +39,7 @@ return {
             map("n", "<leader>ff", require("telescope.builtin").find_files, "Files")
             map("n", "<leader>fr", require("telescope.builtin").lsp_references, "References")
             map("n", "<leader>fm", require("telescope.builtin").marks, "Marks")
+            map("n", "<leader>fj", require("telescope.builtin").jumplist, "Jump List")
             map("n", "<leader>fh", require("telescope.builtin").help_tags, "Help")
             map("n", "<leader>fw", require("telescope.builtin").grep_string, "Current word")
             map("n", "<leader>fg", require("telescope.builtin").live_grep, "Grep")
