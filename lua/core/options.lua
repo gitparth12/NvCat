@@ -16,6 +16,7 @@ local opts = {
     signcolumn = "yes",
     -- colorcolumn = 80,
     updatetime = 250,
+    pumheight = 10,
 }
 
 -- Set options from table

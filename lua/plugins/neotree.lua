@@ -5,9 +5,48 @@ return {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
-        "3rd/image.nvim",            -- Optional image support in preview window: See `# Preview Mode` for more information
+        "3rd/image.nvim",              -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+    source_selector = {
+        winbar = false, -- toggle to show selector on winbar
+        statusline = false, -- toggle to show selector on statusline
+        show_scrolled_off_parent_node = false, -- boolean
+        sources = { -- table
+            {
+                source = "filesystem", -- string
+                display_name = " 󰉓 Files " -- string | nil
+            },
+            {
+                source = "buffers", -- string
+                display_name = " 󰈚 Buffers " -- string | nil
+            },
+            {
+                source = "git_status", -- string
+                display_name = " 󰊢 Git " -- string | nil
+            },
+        },
+        content_layout = "start", -- string
+        tabs_layout = "equal", -- string
+        truncation_character = "…", -- string
+        tabs_min_width = nil, -- int | nil
+        tabs_max_width = nil, -- int | nil
+        padding = 0, -- int | { left: int, right: int }
+        separator = { left = "▏", right = "▕" }, -- string | { left: string, right: string, override: string | nil }
+        separator_active = nil, -- string | { left: string, right: string, override: string | nil } | nil
+        show_separator_on_edge = false, -- boolean
+        highlight_tab = "NeoTreeTabInactive", -- string
+        highlight_tab_active = "NeoTreeTabActive", -- string
+        highlight_background = "NeoTreeTabInactive", -- string
+        highlight_separator = "NeoTreeTabSeparatorInactive", -- string
+        highlight_separator_active = "NeoTreeTabSeparatorActive", -- string
     },
     config = function()
+        -- vim.cmd([[highlight NeotreeBackground ctermbg=#1D1732 guibg=#1D1732]])
+        -- highlight_background = #1D1732
+
+
+
+
         -- If you want icons for diagnostic errors, you'll need to define them somewhere:
         -- vim.fn.sign_define("DiagnosticSignError",
         --     {text = " ", texthl = "DiagnosticSignError"})
@@ -23,7 +62,7 @@ return {
             popup_border_style = "rounded",
             enable_git_status = true,
             enable_diagnostics = true,
-            enable_normal_mode_for_inputs = false,                             -- Enable normal mode for input dialogs.
+            enable_normal_mode_for_inputs = true,                              -- Enable normal mode for input dialogs.
             open_files_do_not_replace_types = { "terminal", "trouble", "qf" }, -- when opening files, do not use windows containing these filetypes or buftypes
             sort_case_insensitive = false,                                     -- used when sorting files and directories in the tree
             sort_function = nil,                                               -- use a custom function for sorting files and directories in the tree
@@ -146,7 +185,7 @@ return {
                         -- this command supports BASH style brace expansion ("x{a,b,c}" -> xa,xb,xc). see `:h neo-tree-file-actions` for details
                         -- some commands may take optional config options, see `:h neo-tree-mappings` for details
                         config = {
-                            show_path = "none" -- "none", "relative", "absolute"
+                            show_path = "relative" -- "none", "relative", "absolute"
                         }
                     },
                     ["A"] = "add_directory", -- also accepts the optional config.show_path option like "add". this also supports BASH style brace expansion.
@@ -197,7 +236,7 @@ return {
                     },
                 },
                 follow_current_file = {
-                    enabled = true,         -- This will find and focus the file in the active buffer every time
+                    enabled = true,          -- This will find and focus the file in the active buffer every time
                     --               -- the current file is changed while the tree is open.
                     leave_dirs_open = false, -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
                 },

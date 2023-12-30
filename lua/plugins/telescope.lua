@@ -43,6 +43,7 @@ return {
             map("n", "<leader>fh", require("telescope.builtin").help_tags, "Help")
             map("n", "<leader>fw", require("telescope.builtin").grep_string, "Current word")
             map("n", "<leader>fg", require("telescope.builtin").live_grep, "Grep")
+            map("n", "<leader>fb", require("telescope.builtin").buffers, "Grep")
             map("n", "<leader>fd", require("telescope.builtin").diagnostics, "Diagnostics")
 
             map("n", "<C-p>", require("telescope.builtin").keymaps, "Search keymaps")
