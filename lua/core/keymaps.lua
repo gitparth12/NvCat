@@ -19,7 +19,6 @@ map({ "n", "v" }, "<leader>d", [["_d]])
 
 map("n", "Q", "<nop>")
 map("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-map("n", "<leader>f", vim.lsp.buf.format)
 
 map("n", "<C-S-k>", "<cmd>cnext<CR>zz")
 map("n", "<C-S-j>", "<cmd>cprev<CR>zz")
