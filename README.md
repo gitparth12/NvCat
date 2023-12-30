@@ -1,8 +1,8 @@
-# init.lua/
+# NvCat/
 
-<a href="https://dotfyle.com/gitparth12/initlua"><img src="https://dotfyle.com/gitparth12/initlua/badges/plugins?style=flat" /></a>
-<a href="https://dotfyle.com/gitparth12/initlua"><img src="https://dotfyle.com/gitparth12/initlua/badges/leaderkey?style=flat" /></a>
-<a href="https://dotfyle.com/gitparth12/initlua"><img src="https://dotfyle.com/gitparth12/initlua/badges/plugin-manager?style=flat" /></a>
+<a href="https://dotfyle.com/gitparth12/nvcat"><img src="https://dotfyle.com/gitparth12/nvcat/badges/plugins?style=flat" /></a>
+<a href="https://dotfyle.com/gitparth12/nvcat"><img src="https://dotfyle.com/gitparth12/nvcat/badges/leaderkey?style=flat" /></a>
+<a href="https://dotfyle.com/gitparth12/nvcat"><img src="https://dotfyle.com/gitparth12/nvcat/badges/plugin-manager?style=flat" /></a>
 
 
 ## Install Instructions
@@ -12,27 +12,30 @@
 Clone the repository and install the plugins:
 
 ```sh
-git clone git@github.com:gitparth12/init.lua ~/.config/gitparth12/init.lua
-NVIM_APPNAME=gitparth12/init.lua/ nvim --headless +"Lazy! sync" +qa
+git clone git@github.com:gitparth12/NvCat ~/.config/gitparth12/NvCat
+NVIM_APPNAME=gitparth12/NvCat/ nvim --headless +"Lazy! sync" +qa
 ```
 
 Open Neovim with this config:
 
 ```sh
-NVIM_APPNAME=gitparth12/init.lua/ nvim
+NVIM_APPNAME=gitparth12/NvCat/ nvim
 ```
 
 ## Plugins
 
 ### colorscheme
 
++ [miikanissi/modus-themes.nvim](https://dotfyle.com/plugins/miikanissi/modus-themes.nvim)
 + [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
 ### comment
 
 + [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
+### completion
+
++ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
 ### file-explorer
 
-+ [stevearc/oil.nvim](https://dotfyle.com/plugins/stevearc/oil.nvim)
 + [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
 ### fuzzy-finder
 
@@ -40,6 +43,9 @@ NVIM_APPNAME=gitparth12/init.lua/ nvim
 ### git
 
 + [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
+### icon
+
++ [kyazdani42/nvim-web-devicons](https://dotfyle.com/plugins/kyazdani42/nvim-web-devicons)
 ### indent
 
 + [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
@@ -48,7 +54,9 @@ NVIM_APPNAME=gitparth12/init.lua/ nvim
 + [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
 ### lsp
 
++ [nvimtools/none-ls.nvim](https://dotfyle.com/plugins/nvimtools/none-ls.nvim)
 + [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
++ [VonHeikemen/lsp-zero.nvim](https://dotfyle.com/plugins/VonHeikemen/lsp-zero.nvim)
 ### lsp-installer
 
 + [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
@@ -59,15 +67,20 @@ NVIM_APPNAME=gitparth12/init.lua/ nvim
 ### plugin-manager
 
 + [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
+### snippet
+
++ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
 ### statusline
 
-+ [feline-nvim/feline.nvim](https://dotfyle.com/plugins/feline-nvim/feline.nvim)
 + [nvim-lualine/lualine.nvim](https://dotfyle.com/plugins/nvim-lualine/lualine.nvim)
 ### syntax
 
 + [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
 + [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
 + [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+### tabline
+
++ [kdheepak/tabline.nvim](https://dotfyle.com/plugins/kdheepak/tabline.nvim)
 ### utility
 
 + [3rd/image.nvim](https://dotfyle.com/plugins/3rd/image.nvim)
@@ -78,6 +91,7 @@ NVIM_APPNAME=gitparth12/init.lua/ nvim
 + cssls
 + html
 + lua_ls
++ pyright
 + tsserver
 
 
