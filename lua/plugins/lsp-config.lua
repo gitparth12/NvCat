@@ -41,11 +41,6 @@ return {
                 },
                 formatting = lsp_zero.cmp_format(),
                 mapping = cmp.mapping.preset.insert({
-                    -- ["<C-Space>"] = cmp.mapping.complete(),
-                    -- ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-                    -- ["<C-d>"] = cmp.mapping.scroll_docs(4),
-                    -- ["<C-f>"] = cmp_action.luasnip_jump_forward(),
-                    -- ["<C-b>"] = cmp_action.luasnip_jump_backward(),
                     ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
                     ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
                     ["<C-p>"] = cmp.mapping.select_prev_item(cmp_jump),
@@ -157,44 +152,3 @@ return {
         end,
     },
 }
--- return {
---     {
---         "VonHeikemen/lsp-zero.nvim",
---         branch = "v3.x",
---     },
---     {
---         "williamboman/mason.nvim",
---         config = function()
---             require("mason").setup({})
---         end,
---     },
---     {
---         "williamboman/mason-lspconfig.nvim",
---         config = function()
---             require("mason-lspconfig").setup({
---                 -- ensure_installed = { "lua_ls", "tsserver", "clangd", "cmake", "cssls", "html", "pyright" }
---                 auto_installed = true,
---             })
---         end,
---     },
---     {
---         "neovim/nvim-lspconfig",
---         config = function()
---             local lspconfig = require("lspconfig")
---             lspconfig.lua_ls.setup({})
---             lspconfig.tsserver.setup({})
---             lspconfig.clangd.setup({
---                 -- cmd = {"/usr/bin/clangd", "--tab-width=4"},
---                 -- root_dir = lspconfig.util.root_pattern('.git');
---             })
---             lspconfig.cmake.setup({})
---             lspconfig.cssls.setup({})
---             lspconfig.html.setup({})
---
---             local map = require("helpers.keys").map
---             map("n", "K", vim.lsp.buf.hover, {})
---             map("n", "gd", vim.lsp.buf.definition, {})
---             map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
---         end,
---     },
--- }

@@ -45,6 +45,8 @@ return {
             map("n", "<leader>fg", require("telescope.builtin").live_grep, "Grep")
             map("n", "<leader>fb", require("telescope.builtin").buffers, "Grep")
             map("n", "<leader>fd", require("telescope.builtin").diagnostics, "Diagnostics")
+            map("n", "<leader>gd", require("telescope.builtin").lsp_definitions, "Definitions")
+            map("n", "<leader>gi", require("telescope.builtin").lsp_implementations, "Implementations")
 
             map("n", "<C-p>", require("telescope.builtin").keymaps, "Search keymaps")
         end,

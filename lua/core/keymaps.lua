@@ -31,8 +31,6 @@ map("v", "<leader>s", [["hy:%s/<C-r>h//gc<left><left><left>]])
 
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
-map("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
-
 map("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
