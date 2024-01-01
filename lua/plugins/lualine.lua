@@ -25,14 +25,15 @@ return {
             orange = '#fab387',
             green = '#a6e3a1',
             blue = '#80A7EA',
+            darker_black = '#191926',
         }
 
         local theme = {
             normal = {
                 a = { fg = colors.black, bg = colors.blue },
                 b = { fg = colors.blue, bg = colors.white },
-                c = { fg = colors.white, bg = colors.black },
-                z = { fg = colors.white, bg = colors.black },
+                c = { fg = colors.white, bg = colors.darker_black },
+                z = { fg = colors.white, bg = colors.darker_black },
             },
             insert = { a = { fg = colors.black, bg = colors.orange } },
             visual = { a = { fg = colors.black, bg = colors.green } },
@@ -51,7 +52,7 @@ return {
             function()
                 return " "
             end,
-            color = { bg = colors.black, fg = "#80A7EA" },
+            color = { bg = colors.darker_black, fg = "#80A7EA" },
         }
 
         local filename = {
