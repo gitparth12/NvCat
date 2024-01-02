@@ -3,6 +3,7 @@ return {
     name = "catppuccin",
     priority = 1000,
     config = function()
+        local dark = "#191926"
         require("catppuccin").setup({
             color_overrides = {
                 all = {
@@ -17,8 +18,11 @@ return {
             },
             custom_highlights = function(colors)
                 return {
-                    NeoTreeNormal = { bg = "#191926" },
-                    NeoTreeNormalNC = { bg = "#191926" },
+                    -- LineNr = { },
+                    NeoTreeNormal = { bg = dark },
+                    NeoTreeNormalNC = { bg = dark },
+                    ErrorMsg = { bg = dark },
+                    MsgArea = { bg = dark },
                 }
             end,
         })
