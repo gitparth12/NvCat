@@ -9,12 +9,15 @@ return {
             {"smartpde/telescope-recent-files"}
         },
         config = function()
+            -- local trouble = require("trouble.providers.telescope")
             require('telescope').setup({
                 defaults = {
                     mappings = {
                         i = {
-                            ["<C-h>"] = "which_key"
-                        }
+                            ["<C-h>"] = "which_key",
+                            -- ["<C-t>"] = trouble.open_with_trouble,
+                        },
+                        -- n = { ["<c-t>"] = trouble.open_with_trouble },
                     }
                 },
                 pickers = {},
