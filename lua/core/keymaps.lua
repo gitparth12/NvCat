@@ -29,7 +29,7 @@ map("n", "<leader>j", "<cmd>lprev<CR>zz")
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 map("v", "<leader>s", [["hy:%s/<C-r>h//gc<left><left><left>]])
 
-map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+map("n", "<leader>x", "<cmd>!chmod +x %<CR>")
 
 map("n", "<leader><leader>", function()
     vim.cmd("so")
