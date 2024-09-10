@@ -64,7 +64,19 @@ return {
         config = function()
             -- This is where all the LSP shenanigans will live
             local lsp_zero = require("lsp-zero")
+            local lspconfig = require("lspconfig")
             lsp_zero.extend_lspconfig()
+            lspconfig.clangd.setup({})
+            lspconfig.rust_analyzer.setup({})
+            lspconfig.sourcekit.setup({
+                capabilities = {
+                    workspace = {
+                        didChangeWatchedFiles = {
+                            dynamicRegistration = true,
+                        },
+                    },
+                },
+            })
 
             vim.diagnostic.config({
                 virtual_text = false,
