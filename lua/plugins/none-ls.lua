@@ -13,7 +13,7 @@ return {
                 null_ls.builtins.diagnostics.eslint,
                 -- null_ls.builtins.completion.spell,
             },
-            map("n", "<leader>f", vim.lsp.buf.format, {}),
+            map("n", "<leader>f", vim.lsp.buf.format),
         })
     end,
 }
