@@ -7,7 +7,7 @@ return {
     config = function()
         local map = require('helpers.keys').map
         local render = require('render-markdown')
-        map('n', '<leader>m', render.toggle, {})
+        map('n', '<leader>m', render.toggle)
         -- map('n', '<leader>e', render.expand, {})
         -- map('n', '<leader>c', render.contract, {})
     end
