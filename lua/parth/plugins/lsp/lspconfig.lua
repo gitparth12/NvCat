@@ -1,3 +1,4 @@
+-- TODO: setup telescope ui for lsp diagnostics
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
