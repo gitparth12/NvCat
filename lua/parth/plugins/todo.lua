@@ -8,7 +8,7 @@ return {
     },
     config = function()
         require('todo-comments').setup()
-        local map = require("helpers.keys").map
+        local map = require("parth.helpers.keys").map
         map("n", "<leader>ft", ':TodoTelescope<CR>', { noremap = true, silent = true })
     end
 }

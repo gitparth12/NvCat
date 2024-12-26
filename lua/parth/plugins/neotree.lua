@@ -336,7 +336,7 @@ return {
         })
 
         -- vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
-        require("helpers.keys").map(
+        require("parth.helpers.keys").map(
             { "n", "v" },
             "<C-n>",
             "<cmd>Neotree toggle<cr>",

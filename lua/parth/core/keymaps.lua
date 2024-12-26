@@ -1,4 +1,4 @@
-local map = require("helpers.keys").map
+local map = require("parth.helpers.keys").map
 
 -- move text up or down
 map("v", "J", ":m '>+1<CR>gv=gv")

@@ -7,7 +7,7 @@ return {
         -- refer to the configuration section below
     },
     config = function()
-        local map = require("helpers.keys").map
+        local map = require("parth.helpers.keys").map
         -- Lua
         map("n", "<leader>tt", function()
             require("trouble").toggle()

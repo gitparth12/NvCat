@@ -19,12 +19,11 @@ if not ok then
 end
 
 -- We have to set the leader key here for lazy.nvim to work
-require("helpers.keys").set_leader(" ")
+require("parth.helpers.keys").set_leader(" ")
 
 -- Load plugins from specifications
 -- (The leader key must be set before this)
-lazy.setup({{import = "plugins"}, {import = "plugins.lsp"}}, {})
-
+lazy.setup({{import = "parth.plugins"}, {import = "parth.plugins.lsp"}})
 -- Might as well set up an easy-access keybinding
 
-require("helpers.keys").map("n", "<leader>L", lazy.show, "Show Lazy")
+require("parth.helpers.keys").map("n", "<leader>L", lazy.show, "Show Lazy")

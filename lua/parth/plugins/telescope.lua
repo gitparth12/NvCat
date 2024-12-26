@@ -26,7 +26,7 @@ return {
             pcall(require("telescope").load_extension, "fzf")
             pcall(require("telescope").load_extension, "recent_files")
 
-            local map = require("helpers.keys").map
+            local map = require("parth.helpers.keys").map
             map("n", "<leader>fr", require('telescope').extensions.recent_files.pick, "Recently opened")
             map("n", "<leader><space>", require("telescope.builtin").buffers, "Open buffers")
             map("n", "<leader>/", function()

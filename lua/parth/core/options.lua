@@ -25,5 +25,5 @@ for opt, val in pairs(opts) do
 end
 
 -- Set other options
-local colorscheme = require("helpers.colorscheme")
+local colorscheme = require("parth.helpers.colorscheme")
 vim.cmd.colorscheme(colorscheme)
