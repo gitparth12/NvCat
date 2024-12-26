@@ -1,8 +1,5 @@
 -- Handle plugins with lazy.nvim
-require("core.lazy")
+require("parth.lazy")
 
 -- Other options
-require("core.options")
-
--- General Neovim keymaps
-require("core.keymaps")
+require("parth.core")
