@@ -10,27 +10,25 @@ return {
         },
         config = function()
             -- local trouble = require("trouble.providers.telescope")
+            local actions = require("telescope.actions")
             require('telescope').setup({
                 defaults = {
                     mappings = {
                         i = {
-                            ["<C-h>"] = "which_key",
-                            -- ["<C-t>"] = trouble.open_with_trouble,
+                            ["<C-k>"] = actions.move_selection_previous,
+                            ["<C-j>"] = actions.move_selection_next,
+                            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                         },
-                        -- n = { ["<c-t>"] = trouble.open_with_trouble },
                     }
                 },
-                pickers = {},
-                extensions = {},
             })
-            -- Enable telescope fzf native, if installed
+
             pcall(require("telescope").load_extension, "fzf")
-            -- Enable recent files extension, if installed
             pcall(require("telescope").load_extension, "recent_files")
 
             local map = require("helpers.keys").map
             map("n", "<leader>fr", require('telescope').extensions.recent_files.pick, "Recently opened")
-            -- map("n", "<leader><space>", require("telescope.builtin").buffers, "Open buffers")
+            map("n", "<leader><space>", require("telescope.builtin").buffers, "Open buffers")
             map("n", "<leader>/", function()
                 -- You can pass additional configuration to telescope to change theme, layout, etc.
                 require("telescope.builtin").current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
