@@ -14,6 +14,20 @@ return {
 
         local map = require("parth.helpers.keys").map
 
+        vim.diagnostic.config {
+            signs = true,
+            underline = true,
+            virtual_text = false,
+            virtual_lines = false,
+            update_in_insert = true,
+            float = {
+                -- UI.
+                ---@diagnostic disable-next-line: assign-type-mismatch
+                header = false,
+                border = 'rounded',
+                focusable = true,
+            }
+        }
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
@@ -43,10 +57,10 @@ return {
                 map("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
                 opts.desc = "Show buffer diagnostics"
-                map("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+                map("n", "<leader>fD", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
                 opts.desc = "Show line diagnostics"
-                map("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+                map("n", "<leader>D", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
                 opts.desc = "Go to previous diagnostic"
                 map("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
