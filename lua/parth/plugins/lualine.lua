@@ -1,314 +1,91 @@
-local old = {
-    "nvim-lualine/lualine.nvim",
-    config = function()
-        require('lualine').setup({
-            options = {
-                theme = 'dracula'
-            }
-        })
-    end
-}
-
-
 return {
-    'nvim-lualine/lualine.nvim',
-    dependencies = {
-        'kdheepak/tabline.nvim',
-    },
-    config = function()
-        local colors = {
-            red = '#cdd6f4',
-            grey = '#181825',
-            black = '#1e1e2e',
-            white = '#313244',
-            light_green = '#6c7086',
-            orange = '#fab387',
-            green = '#a6e3a1',
-            blue = '#80A7EA',
-            darker_black = '#191926',
-        }
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    local lualine = require("lualine")
+    local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
-        local theme = {
-            normal = {
-                a = { fg = colors.black, bg = colors.blue },
-                b = { fg = colors.blue, bg = colors.white },
-                c = { fg = colors.white, bg = colors.darker_black },
-                z = { fg = colors.white, bg = colors.darker_black },
-            },
-            insert = { a = { fg = colors.black, bg = colors.orange } },
-            visual = { a = { fg = colors.black, bg = colors.green } },
-            replace = { a = { fg = colors.black, bg = colors.green } },
-        }
+    local colors = {
+      color0 = "#092236",
+      color1 = "#ff5874",
+      color2 = "#c3ccdc",
+      color3 = "#1c1e26",
+      color6 = "#a1aab8",
+      color7 = "#828697",
+      color8 = "#ae81ff",
+    }
+    local my_lualine_theme = {
+      replace = {
+        a = { fg = colors.color0, bg = colors.color1, gui = "bold" },
+        b = { fg = colors.color2, bg = colors.color3 },
+      },
+      inactive = {
+        a = { fg = colors.color6, bg = colors.color3, gui = "bold" },
+        b = { fg = colors.color6, bg = colors.color3 },
+        c = { fg = colors.color6, bg = colors.color3 },
+      },
+      normal = {
+        a = { fg = colors.color0, bg = colors.color7, gui = "bold" },
+        b = { fg = colors.color2, bg = colors.color3 },
+        c = { fg = colors.color2, bg = colors.color3 },
+      },
+      visual = {
+        a = { fg = colors.color0, bg = colors.color8, gui = "bold" },
+        b = { fg = colors.color2, bg = colors.color3 },
+      },
+      insert = {
+        a = { fg = colors.color0, bg = colors.color2, gui = "bold" },
+        b = { fg = colors.color2, bg = colors.color3 },
+      },
+    }
 
-        local vim_icons = {
-            function()
-                return " "
-            end,
-            separator = { left = "", right = "" },
-            color = { bg = "#313244", fg = "#80A7EA" },
-        }
+    local mode = {
+      "mode",
+      fmt = function(str)
+        -- return ' '
+        -- displays only the first character of the mode
+        return " " .. str
+      end,
+    }
 
-        local space = {
-            function()
-                return " "
-            end,
-            color = { bg = colors.darker_black, fg = "#80A7EA" },
-        }
+    local diff = {
+      "diff",
+      colored = true,
+      symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
+      -- cond = hide_in_width,
+    }
 
-        local filename = {
-            'filename',
-            color = { bg = "#80A7EA", fg = "#242735" },
-            separator = { left = "", right = "" },
-        }
+    local filename = {
+      "filename",
+      file_status = true,
+      path = 0,
+    }
 
-        local filetype = {
-            "filetype",
-            icon_only = true,
-            colored = true,
-            color = { bg = "#313244" },
-            separator = { left = "", right = "" },
-        }
+    local branch = { "branch", icon = { "", color = { fg = "#A6D4DE" } }, "|" }
 
-        local filetype_tab = {
-            "filetype",
-            icon_only = true,
-            colored = true,
-            color = { bg = "#313244" },
-        }
-
-        local buffer = {
-            require 'tabline'.tabline_buffers,
-            separator = { left = "", right = "" },
-        }
-
-        local tabs = {
-            require 'tabline'.tabline_tabs,
-            separator = { left = "", right = "" },
-        }
-
-        local fileformat = {
-            'fileformat',
-            color = { bg = "#b4befe", fg = "#313244" },
-            separator = { left = "", right = "" },
-        }
-
-        local encoding = {
-            'encoding',
-            color = { bg = "#313244", fg = "#80A7EA" },
-            separator = { left = "", right = "" },
-        }
-
-        local branch = {
-            'branch',
-            color = { bg = "#a6e3a1", fg = "#313244" },
-            separator = { left = "", right = "" },
-        }
-
-        local diff = {
-            "diff",
-            color = { bg = "#313244", fg = "#313244" },
-            separator = { left = "", right = "" },
-        }
-
-        local modes = {
-            'mode',
-            fmt = function(str) return str:sub(1, 1) end,
-            color = { bg = "#fab387		", fg = "#1e1e2e" },
-            separator = { left = "", right = "" },
-        }
-
-        local function getLspName()
-            local msg = 'No Active Lsp'
-            local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-            local clients = vim.lsp.get_active_clients()
-            if next(clients) == nil then
-                return msg
-            end
-            for _, client in ipairs(clients) do
-                local filetypes = client.config.filetypes
-                if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-                    return "  " .. client.name
-                end
-            end
-            return "  " .. msg
-        end
-
-        local dia = {
-            'diagnostics',
-            color = { bg = "#313244", fg = "#80A7EA" },
-            separator = { left = "", right = "" },
-        }
-
-        local lsp = {
-            function()
-                return getLspName()
-            end,
-            separator = { left = "", right = "" },
-            color = { bg = "#f38ba8", fg = "#1e1e2e" },
-        }
-
-        require('lualine').setup {
-
-            options = {
-                icons_enabled = true,
-                theme = theme,
-                component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '' },
-                disabled_filetypes = {
-                    statusline = {},
-                    winbar = {},
-                },
-                ignore_focus = {},
-                always_divide_middle = true,
-                globalstatus = true,
-                refresh = {
-                    statusline = 1000,
-                    tabline = 1000,
-                    winbar = 1000,
-                }
-            },
-
-            sections = {
-                lualine_a = {
-                    --{ 'mode', fmt = function(str) return str:gsub(str, "  ") end },
-                    modes,
-                    vim_icons,
-                    --{ 'mode', fmt = function(str) return str:sub(1, 1) end },
-                },
-                lualine_b = {
-                    space,
-
-                },
-                lualine_c = {
-
-                    filename,
-                    filetype,
-                    space,
-                    branch,
-                    diff,
-                },
-                lualine_x = {
-                    space,
-                },
-                lualine_y = {
-                    encoding,
-                    fileformat,
-                    space,
-                },
-                lualine_z = {
-                    dia,
-                    lsp,
-                }
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = { 'filename' },
-                lualine_x = { 'location' },
-                lualine_y = {},
-                lualine_z = {}
-            },
-            tabline = {
-                lualine_a = {
-                    buffer,
-                },
-                lualine_b = {
-                },
-                lualine_c = {},
-                lualine_x = {
-                    tabs,
-                },
-                lualine_y = {
-                    space,
-                },
-                lualine_z = {
-                },
-            },
-            winbar = {},
-            inactive_winbar = {},
-
-        }
-
-        require('lualine').setup {
-
-            options = {
-                icons_enabled = true,
-                theme = theme,
-                component_separators = { left = '', right = '' },
-                section_separators = { left = '', right = '' },
-                disabled_filetypes = {
-                    statusline = {},
-                    winbar = {},
-                },
-                ignore_focus = {},
-                always_divide_middle = true,
-                globalstatus = true,
-                refresh = {
-                    statusline = 1000,
-                    tabline = 1000,
-                    winbar = 1000,
-                }
-            },
-
-            sections = {
-                lualine_a = {
-                    --{ 'mode', fmt = function(str) return str:gsub(str, "  ") end },
-                    modes,
-                    vim_icons,
-                    --{ 'mode', fmt = function(str) return str:sub(1, 1) end },
-                },
-                lualine_b = {
-                    space,
-
-                },
-                lualine_c = {
-
-                    filename,
-                    filetype,
-                    space,
-                    branch,
-                    diff,
-                },
-                lualine_x = {
-                    space,
-                },
-                lualine_y = {
-                    encoding,
-                    fileformat,
-                    space,
-                },
-                lualine_z = {
-                    dia,
-                    lsp,
-                }
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = { 'filename' },
-                lualine_x = { 'location' },
-                lualine_y = {},
-                lualine_z = {}
-            },
-            tabline = {
-                lualine_a = {
-                    buffer,
-                },
-                lualine_b = {
-                },
-                lualine_c = {},
-                lualine_x = {
-                    tabs,
-                },
-                lualine_y = {
-                    space,
-                },
-                lualine_z = {
-                },
-            },
-            winbar = {},
-            inactive_winbar = {},
-
-        }
-    end
+    lualine.setup({
+      icons_enabled = true,
+      options = {
+        theme = my_lualine_theme,
+        component_separators = { left = "|", right = "|" },
+        section_separators = { left = "|", right = "" },
+        globalstatus = true,
+      },
+      sections = {
+        lualine_a = { mode },
+        lualine_b = { branch },
+        lualine_c = { diff, filename },
+        lualine_x = {
+          {
+            lazy_status.updates,
+            cond = lazy_status.has_updates,
+            color = { fg = "#ff9e64" },
+          },
+          { "encoding" },
+          -- { 'fileformat' },
+          { "filetype" },
+        },
+      },
+    })
+  end,
 }
