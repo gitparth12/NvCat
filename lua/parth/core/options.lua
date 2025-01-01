@@ -17,6 +17,7 @@ local opts = {
   -- colorcolumn = 80,
   updatetime = 250,
   pumheight = 10,
+  mousemoveevent = true,
 }
 
 -- Set options from table
