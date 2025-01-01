@@ -374,7 +374,7 @@ return {
           },
           {
             "diff",
-            symbols = { added = " ", modified = "柳", removed = " " },
+            symbols = { added = " ", modified = " ", removed = " " },
             diff_color = {
               added = { fg = colors.green },
               modified = { fg = colors.orange },
