@@ -1,50 +1,42 @@
 return {
-  -- "b0o/incline.nvim",
-  -- config = function()
-  --   local function get_diagnostic_label(props)
-  --     local icons = {
-  --       Error = "",
-  --       Warn = "",
-  --       Info = "",
-  --       Hint = "󰌵",
-  --     }
-  --
-  --     local label = {}
-  --     for severity, icon in pairs(icons) do
-  --       local n = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity[string.upper(severity)] })
-  --       if n > 0 then
-  --         local fg = "#" .. string.format("%06x", vim.api.nvim_get_hl(0, { name = "DiagnosticSign" .. severity }).fg)
-  --         table.insert(label, { icon .. " " .. n .. " ", guifg = fg })
-  --       end
-  --     end
-  --     return label
-  --   end
-  --
-  --   require("incline").setup({
-  --     debounce_threshold = { falling = 500, rising = 250 },
-  --     render = function(props)
-  --       local bufname = vim.api.nvim_buf_get_name(props.buf)
-  --       local filename = vim.fn.fnamemodify(bufname, ":t")
-  --       local diagnostics = get_diagnostic_label(props)
-  --       local modified = vim.api.nvim_buf_get_option(props.buf, "modified") and "bold,italic" or "None"
-  --       local filetype_icon, color = require("nvim-web-devicons").get_icon_color(filename)
-  --
-  --       local buffer = {
-  --         { filetype_icon, guifg = color },
-  --         { " " },
-  --         { filename, gui = modified },
-  --       }
-  --
-  --       if #diagnostics > 0 then
-  --         table.insert(diagnostics, { "| ", guifg = "grey" })
-  --       end
-  --       for _, buffer_ in ipairs(buffer) do
-  --         table.insert(diagnostics, buffer_)
-  --       end
-  --       return diagnostics
-  --     end,
-  --   })
-  -- end,
-  -- -- Optional: Lazy load Incline
-  -- event = "VeryLazy",
+  "b0o/incline.nvim",
+  dependencies = { "nvim-web-devicons", "SmiteshP/nvim-navic" },
+  config = function()
+    local helpers = require("incline.helpers")
+    local navic = require("nvim-navic")
+    local devicons = require("nvim-web-devicons")
+    require("incline").setup({
+      window = {
+        padding = 0,
+        margin = { horizontal = 0, vertical = 0 },
+      },
+      render = function(props)
+        local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+        if filename == "" then
+          filename = "[No Name]"
+        end
+        local ft_icon, ft_color = devicons.get_icon_color(filename)
+        local modified = vim.bo[props.buf].modified
+        local res = {
+          ft_icon and { " ", ft_icon, " ", guibg = ft_color, guifg = helpers.contrast_color(ft_color) } or "",
+          " ",
+          { filename, gui = modified and "bold,italic" or "bold" },
+          guibg = "#44406e",
+        }
+        if props.focused then
+          for _, item in ipairs(navic.get_data(props.buf) or {}) do
+            table.insert(res, {
+              { " > ", group = "NavicSeparator" },
+              { item.icon, group = "NavicIcons" .. item.type },
+              { item.name, group = "NavicText" },
+            })
+          end
+        end
+        table.insert(res, " ")
+        return res
+      end,
+    })
+  end,
+  -- Optional: Lazy load Incline
+  event = "VeryLazy",
 }

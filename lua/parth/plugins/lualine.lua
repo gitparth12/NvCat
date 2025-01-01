@@ -2,85 +2,26 @@ return {
   "nvim-lualine/lualine.nvim",
   lazy = false,
   enabled = true,
-  dependencies = "SmiteshP/nvim-navic",
   config = function()
-    local arrow = require("arrow.statusline")
-    local navic = require("nvim-navic").setup({
-      highlight = true,
-      icons = {
-        File = "󰈙 ",
-        Module = " ",
-        Namespace = "󰌗 ",
-        Package = " ",
-        Class = "󰌗 ",
-        Method = "󰆧 ",
-        Property = " ",
-        Field = " ",
-        Constructor = " ",
-        Enum = "󰕘",
-        Interface = "󰕘",
-        Function = "󰊕 ",
-        Variable = "󰆧 ",
-        Constant = "󰏿 ",
-        String = "󰀬 ",
-        Number = "󰎠 ",
-        Boolean = "◩ ",
-        Array = "󰅪 ",
-        Object = "󰅩 ",
-        Key = "󰌋 ",
-        Null = "󰟢 ",
-        EnumMember = " ",
-        Struct = "󰌗 ",
-        Event = " ",
-        Operator = "󰆕 ",
-        TypeParameter = "󰊄 ",
-      },
-    })
+    -- Eviline config for lualine
+    -- Author: shadmansaleh
+    -- Credit: glepnir
+    local lualine = require("lualine")
 
-    local lazy = require("lazy.status")
-    local colors = {}
-    if package.loaded["tokyonight"] then
-      colors = require("tokyonight.colors").setup({ transform = true })
-    elseif package.loaded["cyberdream"] then
-      colors = require("cyberdream.colors")
-    elseif package.loaded["okcolors"] then
-      colors = require("okcolors.palette")
-    elseif package.loaded["neovim-ayu"] then
-      colors = require("ayu.colors")
-      colors.generate()
-    else
-      colors = {
-        bg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Normal", link = false }).bg),
-        fg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Normal", link = false }).fg),
-        black = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "EndOfBuffer", link = false }).fg),
-        white = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Normal", link = false }).fg),
-        red = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Error", link = false }).fg),
-        green = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "String", link = false }).fg),
-        blue = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Question", link = false }).fg),
-        yellow = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Type", link = false }).fg),
-        cyan = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Keyword", link = false }).fg),
-        orange = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Title", link = false }).fg),
-        purple = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Todo", link = false }).fg),
-      }
-    end
-    local filename_with_icon = require("lualine.components.filename"):extend()
-    filename_with_icon.apply_icon = require("lualine.components.filetype").apply_icon
-    filename_with_icon.icon_hl_cache = {}
-
-    local function shorten_path(path, sep)
-      -- ('([^/])[^/]+%/', '%1/', 1)
-      return path:gsub(string.format("([^%s])[^%s]+%%%s", sep, sep, sep), "%1" .. sep, 1)
-    end
-
-    local function count(base, pattern)
-      return select(2, string.gsub(base, pattern, ""))
-    end
-
-    local default_options = {
-      symbols = { modified = "", readonly = "󰌾", unnamed = "[No Name]" },
-      file_status = true,
-      path = 0,
-      shorting_target = 40,
+    -- Color table for highlights
+    -- stylua: ignore
+    local colors = {
+      bg       = '#202328',
+      fg       = '#bbc2cf',
+      yellow   = '#ECBE7B',
+      cyan     = '#008080',
+      darkblue = '#081633',
+      green    = '#98be65',
+      orange   = '#FF8800',
+      violet   = '#a9a1e1',
+      magenta  = '#c678dd',
+      blue     = '#51afef',
+      red      = '#ec5f67',
     }
 
     local conditions = {
@@ -97,321 +38,192 @@ return {
       end,
     }
 
-    local scrollbar_component = require("lualine.component"):extend()
-
-    function scrollbar_component:init(opts)
-      opts.reverse = opts.reverse or false
-      scrollbar_component.super.init(self, opts)
-    end
-
-    function scrollbar_component:update_status()
-      local scroll_bar_blocks = { "▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" }
-      local curr_line = vim.api.nvim_win_get_cursor(0)[1]
-      local lines = vim.api.nvim_buf_line_count(0)
-
-      if lines == 0 or curr_line > lines then
-        return ""
-      end
-
-      if self.options.reverse then
-        return string.rep(scroll_bar_blocks[8 - math.floor(curr_line / lines * 7)], 2)
-      else
-        return string.rep(scroll_bar_blocks[math.floor(curr_line / lines * 7) + 1], 2)
-      end
-    end
-
-    local options = vim.tbl_deep_extend("keep", {}, default_options)
-
-    require("lualine").setup({
+    -- Config
+    local config = {
       options = {
-        icons_enabled = true,
-        theme = {
-          normal = {
-            a = { bg = colors.bg, fg = colors.fg },
-            b = { bg = colors.bg, fg = colors.fg },
-            c = { bg = colors.bg, fg = colors.fg },
-          },
-        },
-        component_separators = { left = "", right = "" },
-        section_separators = { left = "", right = "" },
-        disabled_filetypes = {
-          statusline = { "alpha" },
-          winbar = { "alpha", "edgy", "toggleterm", "Trouble", "spectre_panel", "qf", "noice", "dbui" },
-        },
-        ignore_focus = {},
-        always_divide_middle = true,
         globalstatus = true,
-        refresh = {
-          statusline = 1000,
-          tabline = 1000,
-          winbar = 1000,
+        -- Disable sections and component separators
+        component_separators = "",
+        section_separators = "",
+        theme = {
+          -- We are going to use lualine_c an lualine_x as left and
+          -- right section. Both are highlighted by c theme .  So we
+          -- are just setting default looks o statusline
+          normal = { c = { fg = colors.fg, bg = colors.bg } },
+          inactive = { c = { fg = colors.fg, bg = colors.bg } },
         },
-      },
-      extension = {
-        "mason",
-        "lazy",
-        -- "neo-tree",
-        -- "oil",
-        "quickfix",
-        "toggleterm",
-        "trouble",
       },
       sections = {
-        lualine_a = {
-          {
-            function()
-              return " "
-            end,
-            color = function()
-              local mode_color = {
-                n = colors.green,
-                i = colors.red,
-                v = colors.blue,
-                [""] = colors.blue,
-                V = colors.blue,
-                c = colors.purple,
-                no = colors.red,
-                s = colors.orange,
-                S = colors.orange,
-                [""] = colors.orange,
-                ic = colors.yellow,
-                R = colors.purple,
-                Rv = colors.purple,
-                cv = colors.red,
-                ce = colors.red,
-                r = colors.cyan,
-                rm = colors.cyan,
-                ["r?"] = colors.cyan,
-                ["!"] = colors.red,
-                t = colors.green,
-              }
-              return { fg = mode_color[vim.fn.mode()], bg = colors.bg }
-            end,
-          },
-        },
-        lualine_b = {
-          {
-            function()
-              local dir = vim.fn.expand("%:p:h")
-
-              if dir == vim.fn.getcwd() then
-                return " Root"
-              else
-                local windwidth = options.globalstatus and vim.go.columns or vim.fn.winwidth(0)
-                local estimated_space_available = windwidth - options.shorting_target
-
-                local data = vim.fn.fnamemodify(dir, ":~:.")
-                for _ = 0, count(data, "/") do
-                  if windwidth <= 84 or #data > estimated_space_available then
-                    data = shorten_path(data, "/")
-                  end
-                end
-
-                return " " .. data
-              end
-            end,
-            cond = conditions.buffer_not_empty,
-            color = { fg = colors.violet },
-          },
-          {
-            "filename",
-            symbols = { modified = "", readonly = "󰌾", unnamed = "[No Name]" },
-            file_status = true,
-            path = 0,
-            shorting_target = 40,
-            cond = conditions.buffer_not_empty,
-            colored = true,
-            color = function()
-              if arrow.is_on_arrow_file() then
-                return { fg = colors.green, gui = "bold" }
-              else
-                return { fg = colors.yellow, gui = "bold" }
-              end
-            end,
-          },
-          {
-            function()
-              return arrow.text_for_statusline_with_icons()
-            end,
-            color = { fg = colors.red },
-          },
-        },
-        lualine_c = {
-          {
-            function()
-              return "%="
-            end,
-          },
-        },
-        lualine_x = {
-          {
-            function()
-              return require("noice").api.status.command.get()
-            end,
-            cond = function()
-              return package.loaded["noice"] and require("noice").api.status.command.has()
-            end,
-            color = { bg = colors.teal, fg = colors.bg, gui = "bold" },
-          },
-          {
-            function()
-              return require("noice").api.status.mode.get()
-            end,
-            cond = function()
-              return package.loaded["noice"] and require("noice").api.status.mode.has()
-            end,
-            color = { bg = colors.orange, fg = colors.bg, gui = "bold" },
-          },
-          {
-            "diagnostics",
-            update_in_insert = true,
-            symbols = { error = " ", warn = " ", info = " " },
-
-            diagnostics_color = {
-              color_error = { fg = colors.red },
-              color_warn = { fg = colors.yellow },
-              color_info = { fg = colors.cyan },
-            },
-            color = { bg = colors.bg },
-          },
-          {
-            function()
-              local lsps = vim.lsp.get_clients({ bufnr = vim.fn.bufnr() })
-              local icon = require("nvim-web-devicons").get_icon_by_filetype(vim.api.nvim_buf_get_option(0, "filetype"))
-              if lsps and #lsps > 0 then
-                local names = {}
-                for _, lsp in ipairs(lsps) do
-                  table.insert(names, lsp.name)
-                end
-                return string.format("%s %s", table.concat(names, ", "), icon)
-              else
-                return icon or ""
-              end
-            end,
-            on_click = function()
-              vim.api.nvim_command("LspInfo")
-            end,
-            color = function()
-              local _, color = require("nvim-web-devicons").get_icon_cterm_color_by_filetype(
-                vim.api.nvim_buf_get_option(0, "filetype")
-              )
-              return { fg = color }
-            end,
-          },
-        },
-        lualine_y = {
-          {
-            function()
-              return " ﮮ "
-            end,
-            cond = lazy.has_updates,
-            color = { fg = colors.cyan },
-          },
-          {
-            "fileformat",
-            symbols = {
-              unix = "󰌽", -- e712
-              dos = "󰍲", -- e70f
-              mac = "", -- e711
-            },
-            color = { fg = colors.purple, gui = "bold" },
-          },
-          {
-            "encoding",
-            fmt = string.upper,
-            color = { fg = colors.blue, gui = "bold" },
-          },
-        },
-        lualine_z = {
-          {
-            function()
-              return "󰕭 %-2v"
-            end,
-            color = { fg = colors.yellow, gui = "bold" },
-          },
-          scrollbar_component,
-        },
+        -- these are to remove the defaults
+        lualine_a = {},
+        lualine_b = {},
+        lualine_y = {},
+        lualine_z = {},
+        -- These will be filled later
+        lualine_c = {},
+        lualine_x = {},
       },
       inactive_sections = {
+        -- these are to remove the defaults
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { "filename" },
-        lualine_x = { "location" },
         lualine_y = {},
         lualine_z = {},
-      },
-      tabline = {},
-      winbar = {
-        lualine_a = {
-          {
-            function()
-              return require("nvim-navic").get_location()
-            end,
-            cond = function()
-              return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
-            end,
-            color = { fg = colors.blue },
-          },
-        },
-        lualine_b = {},
-        lualine_c = {
-          {
-            function()
-              return "%="
-            end,
-          },
-        },
+        lualine_c = {},
         lualine_x = {},
-        lualine_y = {},
-        lualine_z = {
-          {
-            "b:gitsigns_head",
-            icon = "󰘬",
-            color = {
-              bg = colors.bg,
-              fg = colors.yellow,
-            },
-          },
-          {
-            "diff",
-            symbols = { added = " ", modified = " ", removed = " " },
-            diff_color = {
-              added = { fg = colors.green },
-              modified = { fg = colors.orange },
-              removed = { fg = colors.red },
-            },
-            source = function()
-              local gitsigns = vim.b.gitsigns_status_dict
-              if gitsigns then
-                return {
-                  added = gitsigns.added,
-                  modified = gitsigns.changed,
-                  removed = gitsigns.removed,
-                }
-              end
-            end,
-            on_click = function()
-              vim.cmd("DiffviewOpen")
-            end,
-            color = { bg = colors.bg },
-          },
-        },
       },
-      inactive_winbar = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {
-          {
-            function()
-              return "%="
-            end,
-          },
-        },
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
-      },
-      extensions = {},
+    }
+
+    -- Inserts a component in lualine_c at left section
+    local function ins_left(component)
+      table.insert(config.sections.lualine_c, component)
+    end
+
+    -- Inserts a component in lualine_x at right section
+    local function ins_right(component)
+      table.insert(config.sections.lualine_x, component)
+    end
+
+    ins_left({
+      function()
+        return "▊"
+      end,
+      color = { fg = colors.blue }, -- Sets highlighting of component
+      padding = { left = 0, right = 1 }, -- We don't need space before this
     })
+
+    ins_left({
+      -- mode component
+      function()
+        return ""
+      end,
+      color = function()
+        -- auto change color according to neovims mode
+        local mode_color = {
+          n = colors.red,
+          i = colors.green,
+          v = colors.blue,
+          [""] = colors.blue,
+          V = colors.blue,
+          c = colors.magenta,
+          no = colors.red,
+          s = colors.orange,
+          S = colors.orange,
+          [""] = colors.orange,
+          ic = colors.yellow,
+          R = colors.violet,
+          Rv = colors.violet,
+          cv = colors.red,
+          ce = colors.red,
+          r = colors.cyan,
+          rm = colors.cyan,
+          ["r?"] = colors.cyan,
+          ["!"] = colors.red,
+          t = colors.red,
+        }
+        return { fg = mode_color[vim.fn.mode()] }
+      end,
+      padding = { right = 1 },
+    })
+
+    ins_left({
+      -- filesize component
+      "filesize",
+      cond = conditions.buffer_not_empty,
+    })
+
+    ins_left({
+      "filename",
+      cond = conditions.buffer_not_empty,
+      color = { fg = colors.magenta, gui = "bold" },
+    })
+
+    ins_left({ "location" })
+
+    ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
+
+    ins_left({
+      "diagnostics",
+      sources = { "nvim_diagnostic" },
+      symbols = { error = " ", warn = " ", info = " " },
+      diagnostics_color = {
+        error = { fg = colors.red },
+        warn = { fg = colors.yellow },
+        info = { fg = colors.cyan },
+      },
+    })
+
+    -- Insert mid section. You can make any number of sections in neovim :)
+    -- for lualine it's any number greater then 2
+    ins_left({
+      function()
+        return "%="
+      end,
+    })
+
+    ins_left({
+      -- Lsp server name .
+      function()
+        local msg = "No Active Lsp"
+        local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+        local clients = vim.lsp.get_clients()
+        if next(clients) == nil then
+          return msg
+        end
+        for _, client in ipairs(clients) do
+          local filetypes = client.config.filetypes
+          if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+            return client.name
+          end
+        end
+        return msg
+      end,
+      icon = " LSP:",
+      color = { fg = "#ffffff", gui = "bold" },
+    })
+
+    -- Add components to right sections
+    ins_right({
+      "o:encoding", -- option component same as &encoding in viml
+      fmt = string.upper, -- I'm not sure why it's upper case either ;)
+      cond = conditions.hide_in_width,
+      color = { fg = colors.green, gui = "bold" },
+    })
+
+    ins_right({
+      "fileformat",
+      fmt = string.upper,
+      icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+      color = { fg = colors.green, gui = "bold" },
+    })
+
+    ins_right({
+      "branch",
+      icon = "",
+      color = { fg = colors.violet, gui = "bold" },
+    })
+
+    ins_right({
+      "diff",
+      -- Is it me or the symbol for modified us really weird
+      symbols = { added = " ", modified = "󰝤 ", removed = " " },
+      diff_color = {
+        added = { fg = colors.green },
+        modified = { fg = colors.orange },
+        removed = { fg = colors.red },
+      },
+      cond = conditions.hide_in_width,
+    })
+
+    ins_right({
+      function()
+        return "▊"
+      end,
+      color = { fg = colors.blue },
+      padding = { left = 1 },
+    })
+
+    -- Now don't forget to initialize lualine
+    lualine.setup(config)
   end,
 }
