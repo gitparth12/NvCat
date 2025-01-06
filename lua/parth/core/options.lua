@@ -28,3 +28,5 @@ end
 -- Set other options
 local colorscheme = require("parth.helpers.colorscheme")
 vim.cmd.colorscheme(colorscheme)
+-- Set command bar color
+vim.cmd.highlight("MsgArea guibg=#16161e")
