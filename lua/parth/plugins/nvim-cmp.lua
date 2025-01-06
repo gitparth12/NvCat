@@ -13,6 +13,9 @@ return {
 
     local luasnip = require("luasnip")
 
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+
     -- loads vscode style snippets from installed plugins (eg. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -30,10 +33,10 @@ return {
         documentation = cmp.config.window.bordered(),
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
-        ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-        ["<C-p>"] = cmp.mapping.select_prev_item(cmp_jump),
-        ["<C-n>"] = cmp.mapping.select_next_item(cmp_jump),
+        ["<C-k>"] = cmp.mapping.select_prev_item(cmp.cmp_select),
+        ["<C-j>"] = cmp.mapping.select_next_item(cmp.cmp_select),
+        ["<C-p>"] = cmp.mapping.select_prev_item(cmp.cmp_jump),
+        ["<C-n>"] = cmp.mapping.select_next_item(cmp.cmp_jump),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
