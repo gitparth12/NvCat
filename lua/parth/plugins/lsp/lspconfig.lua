@@ -117,6 +117,18 @@ return {
           handlers = handlers,
         })
       end,
+      -- ["pyright"] = function()
+      --   lspconfig["pyright"].setup({
+      --     on_init = function(client)
+      --       print("Pyright is using python:", client.config.settings.python.pythonPath)
+      --     end,
+      --     settings = {
+      --       python = {
+      --         pythonPath = "/Users/parthbhargava/data/honours/code/text_diversity-main/venv/bin/python"
+      --       }
+      --     }
+      --   })
+      -- end,
       ["lua_ls"] = function()
         -- configure lua server (with special settings)
         lspconfig["lua_ls"].setup({
