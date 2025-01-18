@@ -31,6 +31,7 @@ return {
         "lua_ls",
         "pyright",
         "rust_analyzer",
+        -- "ruff",
       },
       -- auto-install configured servers (with lspconfig)
       automatic_installation = true, -- not the same as ensure_installed
