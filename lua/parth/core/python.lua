@@ -26,5 +26,16 @@ end
 
 vim.g.python_host_prog = pynvim_python
 vim.g.python3_host_prog = pynvim_python
+
+if vim.env.VIRTUAL_ENV then
+  local virtual_env_bin = vim.env.VIRTUAL_ENV .. "/bin"
+  vim.env.PATH = virtual_env_bin .. ":" .. vim.env.PATH
+end
+
+-- if VIRTUAL_ENV is set, remove ~/.pyenv/shims from path
+-- if vim.env.VIRTUAL_ENV then
+--   vim.env.PATH = vim.env.PATH:gsub(vim.fn.expand("~/.pyenv/shims") .. ":", "")
+-- end
+
 -- vim.g.python_host_prog = "/Users/parthbhargava/.pyenv/versions/diversity/bin/python"
 -- vim.g.python3_host_prog = "/Users/parthbhargava/.pyenv/versions/diversity/bin/python"
