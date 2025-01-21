@@ -15,6 +15,22 @@ return {
 
     local map = require("parth.helpers.keys").map
 
+    local border = {
+      { "🭽", "FloatBorder" },
+      { "▔", "FloatBorder" },
+      { "🭾", "FloatBorder" },
+      { "▕", "FloatBorder" },
+      { "🭿", "FloatBorder" },
+      { "▁", "FloatBorder" },
+      { "🭼", "FloatBorder" },
+      { "▏", "FloatBorder" },
+    }
+
+    local handlers = {
+      ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = border }),
+      ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+    }
+
     vim.diagnostic.config({
       signs = true,
       underline = true,
@@ -29,6 +45,7 @@ return {
         focusable = true,
       },
     })
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
@@ -97,12 +114,26 @@ return {
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
+          handlers = handlers,
         })
       end,
+      -- ["pyright"] = function()
+      --   lspconfig["pyright"].setup({
+      --     on_init = function(client)
+      --       print("Pyright is using python:", client.config.settings.python.pythonPath)
+      --     end,
+      --     settings = {
+      --       python = {
+      --         pythonPath = "/Users/parthbhargava/data/honours/code/text_diversity-main/venv/bin/python"
+      --       }
+      --     }
+      --   })
+      -- end,
       ["lua_ls"] = function()
         -- configure lua server (with special settings)
         lspconfig["lua_ls"].setup({
           capabilities = capabilities,
+          handlers = handlers,
           settings = {
             Lua = {
               -- make the language server recognize "vim" global

@@ -8,7 +8,13 @@ return {
         -- your configuration comes here
         -- or leave it empty to use the default settings
         style = "night", -- The theme comes in three styles, `storm`, `moon`, a darker variant `night` and `day`
+        light_style = "storm",
         transparent = false, -- Enable this to disable setting the background color
+        cache = true,
+        plugins = {
+          all = package.loaded.lazy == nil,
+          auto = true,
+        },
         terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
         styles = {
           -- Style to be applied to different syntax groups
@@ -34,7 +40,7 @@ return {
 
         --- You can override specific highlights to use other groups or a hex color
         --- function will be called with a Highlights and ColorScheme table
-        ---@param highlights Highlights
+        ---@param highlights tokyonight.Highlights
         ---@param colors ColorScheme
         on_highlights = function(highlights, colors) end,
       })
