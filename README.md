@@ -1,13 +1,12 @@
-# NvCat/
+# NVIM
 
 <a href="https://dotfyle.com/gitparth12/nvcat"><img src="https://dotfyle.com/gitparth12/nvcat/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/gitparth12/nvcat"><img src="https://dotfyle.com/gitparth12/nvcat/badges/leaderkey?style=flat" /></a>
 <a href="https://dotfyle.com/gitparth12/nvcat"><img src="https://dotfyle.com/gitparth12/nvcat/badges/plugin-manager?style=flat" /></a>
 
-
 ## Install Instructions
 
- > Install requires Neovim 0.9+. Always review the code before installing a configuration.
+> Install requires Neovim 0.9+. Always review the code before installing a configuration.
 
 Clone the repository and install the plugins:
 
@@ -26,73 +25,90 @@ NVIM_APPNAME=gitparth12/NvCat/ nvim
 
 ### colorscheme
 
-+ [miikanissi/modus-themes.nvim](https://dotfyle.com/plugins/miikanissi/modus-themes.nvim)
-+ [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
+- [miikanissi/modus-themes.nvim](https://dotfyle.com/plugins/miikanissi/modus-themes.nvim)
+- [catppuccin/nvim](https://dotfyle.com/plugins/catppuccin/nvim)
+
 ### comment
 
-+ [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
+- [numToStr/Comment.nvim](https://dotfyle.com/plugins/numToStr/Comment.nvim)
+
 ### completion
 
-+ [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
+- [hrsh7th/nvim-cmp](https://dotfyle.com/plugins/hrsh7th/nvim-cmp)
+
 ### file-explorer
 
-+ [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
+- [nvim-neo-tree/neo-tree.nvim](https://dotfyle.com/plugins/nvim-neo-tree/neo-tree.nvim)
+
 ### fuzzy-finder
 
-+ [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
+- [nvim-telescope/telescope.nvim](https://dotfyle.com/plugins/nvim-telescope/telescope.nvim)
+
 ### git
 
-+ [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
+- [lewis6991/gitsigns.nvim](https://dotfyle.com/plugins/lewis6991/gitsigns.nvim)
+
 ### icon
 
-+ [kyazdani42/nvim-web-devicons](https://dotfyle.com/plugins/kyazdani42/nvim-web-devicons)
+- [kyazdani42/nvim-web-devicons](https://dotfyle.com/plugins/kyazdani42/nvim-web-devicons)
+
 ### indent
 
-+ [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
+- [lukas-reineke/indent-blankline.nvim](https://dotfyle.com/plugins/lukas-reineke/indent-blankline.nvim)
+
 ### keybinding
 
-+ [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
+- [folke/which-key.nvim](https://dotfyle.com/plugins/folke/which-key.nvim)
+
 ### lsp
 
-+ [nvimtools/none-ls.nvim](https://dotfyle.com/plugins/nvimtools/none-ls.nvim)
-+ [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
-+ [VonHeikemen/lsp-zero.nvim](https://dotfyle.com/plugins/VonHeikemen/lsp-zero.nvim)
+- [nvimtools/none-ls.nvim](https://dotfyle.com/plugins/nvimtools/none-ls.nvim)
+- [neovim/nvim-lspconfig](https://dotfyle.com/plugins/neovim/nvim-lspconfig)
+- [VonHeikemen/lsp-zero.nvim](https://dotfyle.com/plugins/VonHeikemen/lsp-zero.nvim)
+
 ### lsp-installer
 
-+ [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
+- [williamboman/mason.nvim](https://dotfyle.com/plugins/williamboman/mason.nvim)
+
 ### nvim-dev
 
-+ [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
-+ [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
+- [MunifTanjim/nui.nvim](https://dotfyle.com/plugins/MunifTanjim/nui.nvim)
+- [nvim-lua/plenary.nvim](https://dotfyle.com/plugins/nvim-lua/plenary.nvim)
+
 ### plugin-manager
 
-+ [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
+- [folke/lazy.nvim](https://dotfyle.com/plugins/folke/lazy.nvim)
+
 ### snippet
 
-+ [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
+- [L3MON4D3/LuaSnip](https://dotfyle.com/plugins/L3MON4D3/LuaSnip)
+
 ### statusline
 
-+ [nvim-lualine/lualine.nvim](https://dotfyle.com/plugins/nvim-lualine/lualine.nvim)
+- [nvim-lualine/lualine.nvim](https://dotfyle.com/plugins/nvim-lualine/lualine.nvim)
+
 ### syntax
 
-+ [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
-+ [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
-+ [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+- [kylechui/nvim-surround](https://dotfyle.com/plugins/kylechui/nvim-surround)
+- [nvim-treesitter/nvim-treesitter-textobjects](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter-textobjects)
+- [nvim-treesitter/nvim-treesitter](https://dotfyle.com/plugins/nvim-treesitter/nvim-treesitter)
+
 ### tabline
 
-+ [kdheepak/tabline.nvim](https://dotfyle.com/plugins/kdheepak/tabline.nvim)
+- [kdheepak/tabline.nvim](https://dotfyle.com/plugins/kdheepak/tabline.nvim)
+
 ### utility
 
-+ [3rd/image.nvim](https://dotfyle.com/plugins/3rd/image.nvim)
+- [3rd/image.nvim](https://dotfyle.com/plugins/3rd/image.nvim)
+
 ## Language Servers
 
-+ clangd
-+ cmake
-+ cssls
-+ html
-+ lua_ls
-+ pyright
-+ tsserver
+- clangd
+- cmake
+- cssls
+- html
+- lua_ls
+- pyright
+- tsserver
 
-
- This readme was generated by [Dotfyle](https://dotfyle.com)
+This readme was generated by [Dotfyle](https://dotfyle.com)
